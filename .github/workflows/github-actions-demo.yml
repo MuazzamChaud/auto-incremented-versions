@@ -1,17 +1,61 @@
 name: GitHub Actions Demo
-on: [push]
+on:
+  create:
+
 jobs:
-  Explore-GitHub-Actions:
+  ci:
+    # Step 1. Set up operating system
     runs-on: macos-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+    # Step 2. Set up Python 3.9
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    # Step 3. Check-out repository so we can access its contents
+    - uses: actions/checkout@v2
+    # Step 4. Install poetry
+    - uses: snok/install-poetry@v1
+    # Step 5. Install our pycounts package
+    - name: Install package
+      run: poetry install
+    # Step 6. Run tests for pycounts
+    - name: Test with pytest
+      run: poetry run pytest tests/ --cov=pycounts --cov-report=xml
+    # Step 7. Use Codecov to track coverage
+    - uses: codecov/codecov-action@v2
+      with:
+        file: ./coverage.xml    # coverage report
+        fail_ci_if_error: true  # terminate workflow if an error occurs
+    # Step 8. Build documentation
+    - name: Build documentation
+      run: poetry run make html --directory docs/
+  cd:
+    # Only run this job if the "ci" job passes
+    needs: ci
+    # Only run this job on creating a new tag
+    if: github.event_name == 'create' && github.ref == 'refs/tags/v0.0.1'
+    # Step 1. Set up operating system
+    runs-on: macos-latest
+    steps:
+    # Step 2. Set up Python 3.9
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    # Step 3. Check-out repository so we can access its contents
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    # Step 4. Use PSR to make release
+    - name: Python Semantic Release
+      run: |
+          pip install python-semantic-release
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          semantic-release publish
+    # Step 4/5.
+    - run: |
+          python3 -m poetry version $(git tag | sed -e 's/^v//')
+          git add pyproject.toml
+          git commit -m "Updating the release version in pyproject.toml"
+          git tag -f $(git tag)
+          git push origin $(git tag)
