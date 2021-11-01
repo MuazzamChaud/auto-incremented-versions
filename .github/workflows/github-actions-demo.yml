@@ -53,6 +53,7 @@ jobs:
           git config user.email github-actions@github.com
           semantic-release publish
     # Step 4/5.
+    - name: increment version release
     - run: |
           python3 -m poetry version $(git tag | sed -e 's/^v//')
           git add pyproject.toml
