@@ -49,10 +49,10 @@ jobs:
       with:
         fetch-depth: 0
     # Step 6.
-    - name: create tag
-      run: |
-          git tag -a v0.0.1 -m "My first release."
-          git push origin v0.0.1
+    #- name: create tag
+      #run: |
+          #git tag -a v0.0.1 -m "My first release."
+          #git push origin v0.0.1
     # Step 5.
     - name: increment version release
       run: |
