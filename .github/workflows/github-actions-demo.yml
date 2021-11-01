@@ -26,10 +26,16 @@ jobs:
           #git push origin v0.0.1
     # Step 5.
     - name: increment version release
-      run: |
-          python3 -m pip install poetry
-          python3 -m poetry version $(git tag | sed -e 's/^v//')
-          git add pyproject.toml
-          git commit -m "Updating the release version in pyproject.toml"
-          git tag -f $(git tag)
-          git push origin $(git tag)
+      run: python3 -m pip install poetry
+    - name: 2
+      run:  python3 -m poetry version $(git tag | sed -e 's/^v//')
+    - name: 3
+      run: git add pyproject.toml
+    - name: 4
+      run: git add pyproject.toml
+    - name: 5
+      run: git commit -m "Updating the release version in pyproject.toml"
+    - name: 6
+      run: git tag -f $(git tag)
+    - name: 7
+      run: git push origin $(git tag)
