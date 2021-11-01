@@ -28,7 +28,7 @@ jobs:
     - name: increment version release
       run: python3 -m pip install poetry
     - name: 2
-      run:  python3 -m poetry version $(git tag | sed -e 's/^v//')
+      run: 'python3 -m poetry version $(git tag | sed -e 's/^v//')'
     - name: 3
       run: git add pyproject.toml
     - name: 4
