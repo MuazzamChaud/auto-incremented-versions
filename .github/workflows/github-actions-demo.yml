@@ -27,6 +27,12 @@ jobs:
     # Step 5.
     - name: increment version release
       run: python3 -m pip install poetry
+    - name: 1.1
+      run: poetry version
+    - name: 1.2
+      run: git tag
+    - name: 1.3
+      run: git tag | sed -e 's/^v//'
     - name: 2
       run: poetry version $(git tag | sed -e 's/^v//')
     - name: 3
