@@ -25,17 +25,18 @@ jobs:
           #git tag -a v0.0.1 -m "My first release."
           #git push origin v0.0.1
     # Step 5.
-    - name: increment version release
+    - name: Install poetry
       run: python3 -m pip install poetry
-    - name: 2
+    - name: Update pyproject.toml version from latest tag
       run: poetry version $(git describe --tags --abbrev=0 | sed -e 's/^v//')
-    - name: 3
-      run: git add pyproject.toml
-    - name: 4
-      run: git add pyproject.toml
-    - name: 5
-      run: git commit -m "Updating the release version in pyproject.toml"
-    - name: 6
-      run: git tag -f $(git tag)
-    - name: 7
+    - name: Tell git who we are
+      run: |
+          git config --global user.email "none@none.com"
+          git config --global user.name "Auto-version-incrementer"
+    - name: Commit auto-incrementer changes to existing tag
+      run: |
+        git add pyproject.toml
+        git commit -m "Updating the release version in pyproject.toml"
+        git tag -f $(git tag)
+    - name: Push tag changes back to origin
       run: git push origin $(git tag)
