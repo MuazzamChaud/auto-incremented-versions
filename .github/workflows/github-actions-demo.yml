@@ -3,42 +3,13 @@ on:
   create:
     tags:
 jobs:
-  ci:
-    # Step 1. Set up operating system
-    runs-on: macos-latest
-    steps:
-    # Step 2. Set up Python 3.9
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    # Step 3. Check-out repository so we can access its contents
-    - uses: actions/checkout@v2
-    # Step 4. Install poetry
-    - uses: snok/install-poetry@v1
-    # Step 5. Install our pycounts package
-    - name: Install package
-      run: poetry install
-    # Step 6. Run tests for pycounts
-    - name: Test with pytest
-      run: |
-          pip install pytest-cov
-          pip install --upgrade setuptools
-          poetry run pytest tests/ --cov=pycounts --cov-report=xml
-    # Step 7. Use Codecov to track coverage
-    - uses: codecov/codecov-action@v2
-      with:
-        file: ./coverage.xml    # coverage report
-        fail_ci_if_error: true  # terminate workflow if an error occurs
-    # Step 8. Build documentation
-    - name: Build documentation
-      run: poetry run make html --directory docs/
   cd:
     # Only run this job if the "ci" job passes
     #needs: ci
     # Only run this job on creating a new tag
     #if: github.event_name == 'create' && github.ref == 'refs/tags/*'
     # Step 1. Set up operating system
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
     # Step 2. Set up Python 3.9
     - uses: actions/setup-python@v2
@@ -56,6 +27,7 @@ jobs:
     # Step 5.
     - name: increment version release
       run: |
+          python3 -m pip install poetry
           python3 -m poetry version $(git tag | sed -e 's/^v//')
           git add pyproject.toml
           git commit -m "Updating the release version in pyproject.toml"
