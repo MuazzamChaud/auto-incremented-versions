@@ -5,7 +5,7 @@ on:
 jobs:
   cd:
     # Only run this job on creating a new tag
-    if: git tag --list 'v-*' #github.ref == 'refs/tags/git tag --list 'v-*''
+    if: (git describe --tags --abbrev=0) --list 'v-*' #github.ref == 'refs/tags/git tag --list 'v-*''
     # Step 1. Set up operating system
     runs-on: ubuntu-latest
     steps:
