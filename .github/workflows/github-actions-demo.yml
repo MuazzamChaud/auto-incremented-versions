@@ -5,7 +5,7 @@ on:
 jobs:
   cd:
     # Only run this job on creating a new tag
-    if: github.event_name == 'create' && github.ref == 'refs/tags/'v-*''
+    if: github.event_name == 'create' && github.ref == 'refs/tags/git tag --list 'v-*''
     # Step 1. Set up operating system
     runs-on: ubuntu-latest
     steps:
