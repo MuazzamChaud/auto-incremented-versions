@@ -31,7 +31,7 @@ jobs:
       run: poetry run make html --directory docs/
   cd:
     # Only run this job if the "ci" job passes
-    needs: ci
+    #needs: ci
     # Only run this job on creating a new tag
     if: github.event_name == 'create' && github.ref == 'refs/tags/v0.0.1'
     # Step 1. Set up operating system
