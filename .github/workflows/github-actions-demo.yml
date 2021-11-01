@@ -2,8 +2,7 @@ name: GitHub Actions Demo
 on:
   create:
     tags:
-      - name: filtering tag
-        run: git tag -l 'v-*'
+      - 'refs/tags/'v-*''
 jobs:
   cd:
     # Only run this job on creating a new tag
