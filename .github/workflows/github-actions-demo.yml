@@ -2,7 +2,7 @@ name: GitHub Actions Demo
 on:
   create:
     tags:
-      - 'refs/tags/v-*'
+      - 'refs/tags/v*'
 jobs:
   cd:
     # Only run this job on creating a new tag
