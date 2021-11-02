@@ -6,7 +6,7 @@ on:
       #- 'refs/tags/v'
 jobs:
   cd:
-    if: startsWith(github.ref, 'refs/tags/v')
+    #if: startsWith(github.ref, 'refs/tags/v')
     # Step 1. Set up operating system
     runs-on: ubuntu-latest
     steps:
