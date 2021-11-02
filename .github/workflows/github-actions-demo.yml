@@ -15,6 +15,7 @@ jobs:
       run: |
           echo '${{ github.ref }}'
           git describe --tags --abbrev=0
+          echo "Change detected!"
   cd:
     env:
       GIT_REF: ${{ github.ref }}
@@ -35,7 +36,7 @@ jobs:
       run: |
           echo $GIT_REF | sed -e 's/^.*\/v\(.*\)/v\1/'
           echo $GIT_REF | sed -e 's/^.*\/v\(.*\)/\1/'
-          echo "Hello world"
+          echo "Change detected!"
     - name: Install poetry
       run: python3 -m pip install poetry
     - name: Update pyproject.toml version from latest tag
