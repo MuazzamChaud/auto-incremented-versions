@@ -6,6 +6,7 @@ on:
       #- 'refs/tags/v'
 jobs:
   something:
+    runs-on: ubuntu-latest
     steps:
       - name: print stuff
         run: echo '${{ github.ref }}'
