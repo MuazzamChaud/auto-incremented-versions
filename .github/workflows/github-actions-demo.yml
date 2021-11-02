@@ -8,11 +8,11 @@ jobs:
   something:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: print stuff
-        run: |
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: print stuff
+      run: |
           echo '${{ github.ref }}'
           git describe --tags --abbrev=0
   cd:
