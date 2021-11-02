@@ -30,6 +30,6 @@ jobs:
       run: |
         git add pyproject.toml
         git commit -m "Updating the release version in pyproject.toml"
-        git tag -f $(git describe --tags --abbrev=0)
+        git describe --tags -f $(git describe --tags --abbrev=0)
     - name: Push tag changes back to origin
       run: git push -f origin $(git describe --tags --abbrev=0)
