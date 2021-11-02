@@ -3,7 +3,7 @@ on:
   create:
     tags:
     # Only run event if the tag starts with the letter v
-      - 'refs/tags/v'
+      - 'refs/tags/v*'
 jobs:
   cd:
     #if: startsWith(github.ref, 'refs/tags/v')
