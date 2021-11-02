@@ -33,8 +33,8 @@ jobs:
     # Step 4.
     - name: Print stuff
       run: |
-          echo $(echo $GIT_REF | sed -e 's/^.*\/v\([^/]+\)/v\1/')
-          echo $(echo $GIT_REF | sed -e 's/^.*\/v\([^/]+\)/\1/')
+          echo $GIT_REF | sed -e 's/^.*\/v\([^/]+\)/v\1/'
+          echo $GIT_REF | sed -e 's/^.*\/v\([^/]+\)/\1/'
     - name: Install poetry
       run: python3 -m pip install poetry
     - name: Update pyproject.toml version from latest tag
