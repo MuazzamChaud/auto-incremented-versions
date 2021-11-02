@@ -2,6 +2,7 @@ name: GitHub Actions Demo
 on:
   create:
     tags:
+    # Only run event if the tag starts with the letter v
       - 'refs/tags/v*'
 jobs:
   cd:
