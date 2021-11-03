@@ -31,11 +31,11 @@ jobs:
     - uses: actions/checkout@v2
       with:
         #fetch-depth: 0
-        file-path: |
-          https://github.com/MuazzamChaud/auto-incremented-versions/blob/ddfe07c100210881632a73d83593841273f7d8b1/csvcubed-devtools/pyproject.toml
-          https://github.com/MuazzamChaud/auto-incremented-versions/blob/ddfe07c100210881632a73d83593841273f7d8b1/csvcubed-models/pyproject.toml
-          https://github.com/MuazzamChaud/auto-incremented-versions/blob/ddfe07c100210881632a73d83593841273f7d8b1/csvcubed-pmd/pyproject.toml
-          https://github.com/MuazzamChaud/auto-incremented-versions/blob/ddfe07c100210881632a73d83593841273f7d8b1/csvcubed/pyproject.toml
+          file-path: |
+            csvcubed-devtools/pyproject.toml
+            csvcubed-models/pyproject.toml
+            csvcubed-pmd/pyproject.toml
+            csvcubed/pyproject.toml
     # Step 4.
     - name: Print stuff
       run: |
