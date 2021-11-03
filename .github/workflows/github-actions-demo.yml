@@ -45,7 +45,11 @@ jobs:
     - name: Install poetry
       run: python3 -m pip install poetry
     - name: Update pyproject.toml version from latest tag
-      run: poetry version $(echo $GIT_REF | sed -e 's/^.*\/v\(.*\)/\1/')
+      run: |
+          csvcubed-devtools/pyproject.toml poetry version $(echo $GIT_REF | sed -e 's/^.*\/v\(.*\)/\1/')
+          csvcubed-models/pyproject.toml poetry version $(echo $GIT_REF | sed -e 's/^.*\/v\(.*\)/\1/')
+          csvcubed-pmd/pyproject.toml poetry version $(echo $GIT_REF | sed -e 's/^.*\/v\(.*\)/\1/')
+          csvcubed/pyproject.toml poetry version $(echo $GIT_REF | sed -e 's/^.*\/v\(.*\)/\1/')
     - name: Tell git who we are
       run: |
           git config --global user.email "none@none.com"
