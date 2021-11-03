@@ -32,10 +32,10 @@ jobs:
       with:
         #fetch-depth: 0
         file-path: |
-          csvcubed-devtools/pyproject.toml
-          csvcubed-models/pyproject.toml
-          csvcubed-pmd/pyproject.toml
-          csvcubed/pyproject.toml
+          /csvcubed-devtools/pyproject.toml
+          /csvcubed-models/pyproject.toml
+          /csvcubed-pmd/pyproject.toml
+          /csvcubed/pyproject.toml
     # Step 4.
     - name: Print stuff
       run: |
