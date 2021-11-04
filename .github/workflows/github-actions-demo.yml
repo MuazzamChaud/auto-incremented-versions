@@ -32,10 +32,10 @@ jobs:
       with:
         #fetch-depth: 0
         file-path: |
-          echo "{csvcubed-devtools/pyproject.toml}" >> $GITHUB_PATH
-          echo "{csvcubed-models/pyproject.toml}" >> $GITHUB_PATH
-          echo "{csvcubed-pmd/pyproject.toml}" >> $GITHUB_PATH
-          echo "{csvcubed/pyproject.toml}" >> $GITHUB_PATH
+          $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/csvcubed-devtools/pyproject.toml
+          $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/csvcubed-models/pyproject.toml
+          $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/csvcubed-pmd/pyproject.toml
+          $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/csvcubed/pyproject.toml
     # Step 4.
     - name: Print stuff
       run: |
