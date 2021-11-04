@@ -31,11 +31,11 @@ jobs:
     - uses: actions/checkout@v2
       with:
         #fetch-depth: 0
-        file-path: |
-          $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/csvcubed-devtools/pyproject.toml
-          $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/csvcubed-models/pyproject.toml
-          $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/csvcubed-pmd/pyproject.toml
-          $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/csvcubed/pyproject.toml
+        path: |
+          csvcubed-devtools/pyproject.toml
+          csvcubed-models/pyproject.toml
+          csvcubed-pmd/pyproject.toml
+          csvcubed/pyproject.toml
     # Step 4.
     - name: Print stuff
       run: |
